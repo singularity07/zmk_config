@@ -10,6 +10,17 @@
 #include <dt-bindings/zmk/ext_power.h>
 
 / {
+    behaviors {
+        lt_rpt: layer_tap_repeat {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -19,7 +30,7 @@
                 &kp TAB   &kp Q  &kp W  &kp E  &kp R  &kp T                &kp Y  &kp U  &kp I  &kp O  &kp P   &kp EQUAL
                 &kp LSHIFT &kp A &kp S &kp D &kp F &kp G                   &kp H  &kp J  &kp K  &kp L  &kp SEMI &kp SQT
                 &kp LCTRL &kp Z &kp X &kp C &kp V &kp B &kp LBKT &kp RBKT  &kp N  &kp M  &kp COMMA &kp DOT &kp SLASH &kp RSHIFT
-                              &kp LGUI &kp LALT &lt 1 ESC {tapping-term-ms = <500>;} &kp BSPC     &kp SPACE &lt 1 ENTER {tapping-term-ms = <500>;} &kp INS &kp DEL
+                              &kp LGUI &kp LALT &lt 1 ESC &kp BSPC     &kp SPACE &lt_rpt 1 ENTER &kp INS &kp DEL
             >;
         };
 
